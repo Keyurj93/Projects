@@ -1,0 +1,89 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black,.1);
+    background-color:rgba($color-white,.6);
+    border-radius: 3px;
+    padding: 6rem;
+    // 3 rem is subtracted below. to compensate that
+    padding-left: 9rem;
+    // tilt it in x direction
+    transform: skewX(-12deg);
+
+    @include respond(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include respond(phone){
+        transform: skewX(0);
+    }
+
+    // tilt all children in opposite direction
+    & > *{
+        transform: skewX(12deg);
+    }
+
+    // circular figure display picture
+    &__shape{
+        height: 15rem;
+        width: 15rem;
+        float: left;
+        // this makes content flow arount the element.The element needs to be floated and it needs height and width to apply it. first i/p is radius, second and third are x and y distances.
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        // this gives shape to image
+        -webkit-clip-path:circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        // when the content is floated around image we avoid margins and instead go with transform
+        transform: translateX(-3rem) skewX(12deg);
+        // to make fig caption position with respect to it.
+        position: relative;
+
+
+        @include respond(phone){
+            transform:  translateX(-3rem) skewX(0);
+        }
+    }
+    // display picture
+    &__img{
+        height: 100%;
+        // bring the lady to center in dp. Scale the image initially an on hover, scale it down
+        transform: translateX(-4rem) scale(1.4);
+        // fixes any problems with animations
+        backface-visibility: hidden;
+        transition: all .5s;
+    }
+    // Title inside testimony
+    &__text{
+        @include respond(phone){
+            transform:skewX(0);
+        }
+    }
+    // caption to the display picture
+    // put the caption down and hide it. On hover bring it up and blur the image. 
+    &__caption{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,20%);
+        color:$color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        // to fix the glitch in animation
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption{
+        opacity: 1;
+        transform:translate(-50%,-50%);
+    }
+    &:hover &__img{
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
+    }
+}

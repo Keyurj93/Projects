@@ -1,0 +1,100 @@
+
+ 
+ /* link is a state of button(pseudo class) */
+ /* visited link appears differently, making it appear same as link */
+//  button is an individual/independant piece of code which can be reused hence it is classified as a component
+ .btn{
+    &, 
+    &:link,
+    &:visited{
+       text-transform: uppercase;
+       text-decoration: none;
+       display: inline-block;
+       padding:1.5rem 4rem;
+       border-radius: 10rem;
+       transition: all .2s;
+       position: relative;
+
+    //    change for button element
+    border: none;
+    cursor: pointer;
+    }
+
+    &:hover{
+       transform: translateY(-0.3rem);
+       /* x offset, y offset, blur effect of shadow and color */
+       box-shadow: 0 1rem 2rem rgba($color-black,0.2);
+       &::after{
+           transform: scaleX(1.4) scaleY(1.6);
+           opacity: 0;
+       }
+   }
+   /* when button is clicked */
+   &:active,
+   &:focus{
+       transform: translateY(-0.1rem);
+       box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+   }
+//    button white
+   &--white{
+       background-color: #fff;
+       color:$color-grey-dark;
+       &::after{
+           background-color: #fff;
+       }
+   }
+//    button green
+   &--green{
+    background-color:$color-primary;
+    color:$color-white;
+    &::after{
+        background-color: #fff;
+    }
+}
+   /* insert new button after old button */
+   /* when we hover out of the button, this button goes behing the original button */
+   &::after{
+       content: "";
+       display:inline-block;
+       height: 100%;
+       width:100%;
+       border-radius: 10rem;
+       position: absolute;
+       top:0;
+       left: 0;
+       z-index: -1;
+       /* to animate other states, initial state must allow animations */
+       transition: all .4s;
+       
+   }
+   &--animated{
+       animation:moveInBottom .5s ease-out .75s;
+       /* automatically apply 0%(initial styles) i.e before the animation starts */
+       animation-fill-mode: backwards;
+   }
+}
+.btn-text{
+    &:link,
+    &:visited{
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px; 
+        font-size:$default-font-size;
+        // allow animations
+        transition: all .2s;
+    }
+    &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+        // box shadow
+        box-shadow: 0 1rem 2rem rgba($color-black,.15);
+        // button lifting in z direction effect
+        transform: translateY(-2px);
+    }
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+        transform: translateY(-2px);
+    }
+}

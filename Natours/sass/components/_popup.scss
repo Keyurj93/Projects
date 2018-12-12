@@ -1,0 +1,99 @@
+.popup{
+    height: 100vh;
+    width:100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black,.8);
+    z-index: 4000;
+    // hide initially
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+
+        // table and table cells are used to give equal height to left and right sections. They occupy different heights otherwise
+        &__content{
+            @include absCenter;
+            width:75%;
+            background-color: $color-white;
+            box-shadow: 0 2rem 4rem rgba($color-black,.2);
+            border-radius: 3px;
+            display: table;
+            // give border radius when image overlaps element
+            overflow: hidden;
+            // hide it initially
+            opacity: 0;
+            transform: translate(-50%,-50%) scale(.25);
+            transition: all .5s .2s;
+        }
+
+
+    // when book now is clicked
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // when popup opens
+    &:target &__content{
+        opacity: 1;
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+
+    // left section
+    &__left{
+        width: 33.3333%;
+        display: table-cell;
+    }
+    // right section
+    &__right{
+        width: 66.66667%;
+        display: table-cell;
+        // aligns content to center vertically. only applicable for tables
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+    // image inside left section
+    &__img{
+        display: block;
+        width: 100%;
+    }
+    // text inside right section
+    &__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        -moz-column-count: 2;
+        -moz-column-gap: 4rem;
+        -moz-column-rule: 1px solid $color-grey-light-2;
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+    // cross icon to close popup
+    &__close{
+        &:link,
+        &:visited{
+            color:$color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            // it is text. we adjust line height
+            line-height: 1;
+        }
+        &:hover{
+            color: $color-primary;
+        }
+    }
+}

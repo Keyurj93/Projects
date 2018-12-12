@@ -1,0 +1,60 @@
+// all the animations are put here
+/* animation for main header*/
+ @keyframes moveInLeft{
+    /* where we want the element to be initially i.e before animation starts */
+    0%{
+        /* make it invisible */
+        opacity: 0;
+        /* move the element 100px on left */
+        transform: translateX(-10rem) 
+    }
+    80%{
+        transform: translateX(1rem);
+    }
+    /* where we want the element to be finally i.e after animation ends */
+    100%{
+        /* make it visible */
+        opacity: 1;
+        /* bring the element to original position */
+        transform: translateX(0);
+    }
+}
+/* animation for sub header*/
+@keyframes moveInRight{
+    /* where we want the element to be initially i.e before animation starts */
+    0%{
+        /* make it invisible */
+        opacity: 0;
+        /* move the element 100px on left */
+        transform: translateX(10rem);
+    }
+    80%{
+        transform: translateX(-1rem);
+    }
+    /* where we want the element to be finally i.e after animation ends */
+    100%{
+        /* make it visible */
+        opacity: 1;
+        /* bring the element to original position */
+        transform: translateX(0);
+    }
+}
+@keyframes moveInBottom{
+    /* where we want the element to be initially i.e before animation starts */
+    0%{
+        /* make it invisible */
+        opacity: 0;
+        /* move the element 100px on left */
+        transform: translateY(5rem);
+    }
+    /* 80%{
+        transform: translateX(-10px);
+    } */
+    /* where we want the element to be finally i.e after animation ends */
+    100%{
+        /* make it visible */
+        opacity: 1;
+        /* bring the element to original position */
+        transform: translateY(0);
+    }
+}

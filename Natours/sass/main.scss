@@ -1,0 +1,35 @@
+/* 
+colours
+
+Light green:#7ed56f;
+Medium Green:#55c57a;
+Dark Green:#28b485;
+
+ */
+// BEM along with sass
+// 7-1 pattern: create 7 different folders and import all these files into a single file
+
+@import "./abstracts/functions";
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
+@import "./base/base";
+@import "./base/animations";
+@import "./base/typography";
+@import "./base/utilities";
+@import "./layouts/grid";
+@import "./base/base";
+@import "./pages/home";
+@import "./components/button";
+@import "./layouts/header";
+@import "./components/composition";
+@import "./components/features-box";
+@import "./components/card";
+@import "./components/story";
+@import "./components/bg-video";
+@import "./components/form";
+@import "./layouts/footer";
+@import "./layouts/navigation";
+@import "./components/popup";
+
+
+

@@ -1,0 +1,229 @@
+.card{
+    // on hover, the card appears to move towards the user. This can be done by using perspective
+    // perspective is defined on parent of the element where rotation/transform is occuring
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    position: relative;
+    // if position is absolute, that element is remved from normal flow. Setting height of parent manually to prevent parent from collapsing.
+    height: 52rem;
+
+    
+    &__side{
+        // this will apply to both front and back sides
+
+        height: 52rem;
+        transition: all .8s ease;
+        // position makes cards overlap eachother. Otherwise they will stack on top of eachother.
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+         // image in on card overlaps background and to avoid that we use overflow: hidden;
+         overflow: hidden;
+        // we wont see the back side of card without this property. The same card will be rotated by 180 deg.we want different styles to show on rotate
+        backface-visibility: hidden;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black,.15);
+        // by default, front side will be 0 deg
+
+        &--front{
+            background-color:$color-white;
+        }
+        // by default, back side will be 180 deg
+        &--back{
+            // back side styling
+            transform: rotateY(180deg);
+            &-1{
+                background-image: linear-gradient(to right bottom,$color-secondary-light,$color-secondary-dark)
+            }
+            &-2{
+                background-image: linear-gradient(to right bottom,$color-primary-light,$color-primary-dark);
+            }
+            &-3{
+                background-image: linear-gradient(to right bottom,$color-tertiary-light,$color-tertiary-dark)
+            }
+        }
+    }
+    // when card is hovered, front will rotate 180deg
+    &:hover &__side--front{
+        transform: rotateY(-180deg);
+    }
+    // when card is hovered, back will not rotate
+    &:hover &__side--back{
+        transform: rotateY(0deg);
+    }
+
+
+    // front side picture
+    &__picture{
+        background-size: cover;
+        height: 23rem;
+        // this property is used to blend multiple images. 
+        background-blend-mode: screen;
+        // clip the images upwards on cards
+        -webkit-clip-path: polygon(0 0,100% 0,100% 85%,0 100%);
+        clip-path: polygon(0 0,100% 0,100% 85%,0 100%);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        // first picture
+       &--1{
+        background-image:
+        // first card image
+        linear-gradient(to right bottom,$color-secondary-light,$color-secondary-dark),
+        url('../img/nat-5.jpg');
+       } 
+       &--2{
+        background-image:
+        // second card image
+        linear-gradient(to right bottom,$color-primary-light,$color-primary-dark),
+        url('../img/nat-6.jpg');
+       } 
+       &--3{
+        background-image:
+        // third card image
+        linear-gradient(to right bottom,$color-tertiary-light,$color-tertiary-dark),
+        url('../img/nat-7.jpg');
+       } 
+    }
+    // text on card images front side
+    &__heading{
+        font-size: 2.8rem;
+        text-transform: uppercase;
+        text-align: right;
+        font-weight: 300;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width:75%;
+    }
+    
+    &__heading-span{
+        // Title on card
+        padding: 1rem 1.5rem;
+        // treats one word as 2 lines as if they were 2 different elements
+        -webkit-box-decoration-break:clone; 
+        box-decoration-break:clone;
+
+        // first title and gradient
+        &--1{
+            // gradient for text
+            background-image: linear-gradient(
+                to right bottom,
+                rgba($color-secondary-light,.85),
+                rgba($color-secondary-dark,.85));
+        }
+        // second title and gradient
+        &--2{
+            // gradient for text
+            background-image: linear-gradient(
+                to right bottom,
+                rgba($color-primary-light,.85),
+                rgba($color-primary-dark,.85));
+        }
+        // third title and gradient
+        &--3{
+            // gradient for text
+            background-image: linear-gradient(
+                to right bottom,
+                rgba($color-tertiary-light,.85),
+                rgba($color-tertiary-dark,.85));
+        }
+    }
+    // list below image on front side
+    &__details{
+        padding: 3rem;
+        ul{
+            list-style: none;
+            // to limit the border bottom to 80%;
+            width: 80%;
+            // center the ul inside div elements
+            margin: 0 auto;
+            li{
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                border-bottom: 1px solid $color-grey-light-2;
+            }
+        }
+    }
+
+    // back side styling
+    &__cta{
+        // center the element vertically and horizontally
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        width: 90%;
+        text-align: center;
+    }
+    &__price-box{
+        text-align: center;
+        margin-bottom: 8rem;
+        color: $color-white;
+    }
+    &__price-only{
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+    &__price-value{
+        font-size: 6rem;
+        font-weight: 100;
+    }
+
+
+    @media only screen and (max-width:56.25em),
+    // device where screen is bigger but hover event not possible ex: tab
+    only screen and (hover:none)
+    {
+        height: auto;
+        border-radius: 3px;
+        background-color: $color-white;
+        box-shadow: 0 1.5rem 4rem rgba($color-black,.15);
+        &__side{
+            // this will apply to both front and back sides
+
+            height: auto;
+            // position makes cards overlap eachother. Otherwise they will stack on top of eachother.
+            position: relative;
+            box-shadow: none;
+            &--back{
+                // back side styling
+                transform: rotateY(0);
+                clip-path: polygon(0 15%,100% 0, 100% 100%,0 100%);
+            }
+        }
+        // when card is hovered, front will rotate 180deg
+        &:hover &__side--front{
+            transform: rotateY(0);
+        }
+
+        &__details{
+            padding: 1rem 3rem;
+        }
+
+        // back side styling
+        &__cta{
+            // center the element vertically and horizontally
+            position: relative;
+            top: 0%;
+            left:0%;
+            transform: translate(0);
+            width: 100%;
+            text-align: center;
+            padding: 7rem 4rem 4rem 4rem;
+        }
+        &__price-box{
+            margin-bottom: 8rem;;
+        }
+        &__price-value{
+            font-size: 4rem;
+        }
+
+
+    }
+
+
+
+}
